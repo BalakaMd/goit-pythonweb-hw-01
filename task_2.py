@@ -1,4 +1,10 @@
+import logging
 from abc import ABC, abstractmethod
+
+logging.basicConfig(
+    format="\n%(message)s",
+    level=logging.DEBUG,
+)
 
 
 # SRP
@@ -40,10 +46,10 @@ class Library(LibraryInterface):
 
     def show_books(self):
         if not self.books:
-            print("Library is empty.\n")
+            logging.info("Library is empty.")
         else:
             for book in self.books:
-                print(book)
+                logging.info(book)
 
 
 # DIP
@@ -54,16 +60,16 @@ class LibraryManager:
     def add_book(self, title: str, author: str, year: str):
         book = Book(title, author, year)
         self.library.add_book(book)
-        print(f"Book '{title}' added to the library.\n")
+        logging.info(f"Book '{title}' added to the library.")
 
     def remove_book(self, title: str):
         self.library.remove_book(title)
-        print(f"Book '{title}' removed from the library.\n")
+        logging.info(f"Book '{title}' removed from the library.")
 
     def show_books(self):
-        print("\nLibrary contents:")
+        logging.info("Library contents:")
         self.library.show_books()
-        print("\n")
+        logging.info("")
 
 
 def main():
@@ -87,9 +93,10 @@ def main():
                 case "exit":
                     break
                 case _:
-                    print("Invalid command. Please try again.\n")
+                    logging.info("Invalid command. Please try again.")
     except KeyboardInterrupt:
-        print("\nExiting the program.\n")
+        logging.info("Exiting the program.")
+
 
 if __name__ == "__main__":
     main()

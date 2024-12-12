@@ -1,4 +1,11 @@
+import logging
 from abc import ABC, abstractmethod
+
+
+logging.basicConfig(
+    format="%(message)s",
+    level=logging.DEBUG,
+)
 
 
 # Abstract class Vehicle
@@ -26,12 +33,12 @@ class VehicleFactory(ABC):
 
 class Car(Vehicle):
     def start_engine(self):
-        print(f"{self.make} {self.model} ({self.spec} Spec): Двигун запущено")
+        logging.info(f"{self.make} {self.model} ({self.spec} Spec): Двигун запущено")
 
 
 class Motorcycle(Vehicle):
     def start_engine(self):
-        print(f"{self.make} {self.model} ({self.spec} Spec): Мотор заведено")
+        logging.info(f"{self.make} {self.model} ({self.spec} Spec): Мотор заведено")
 
 
 # Фабрика для створення транспортних засобів специфікації US
